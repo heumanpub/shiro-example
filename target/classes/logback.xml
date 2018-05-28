@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <property name="fileDir" value="/Users/heuman/local/logs/shiro-example/%d{yyyy-MM,aux}"/>
+    <appender name="CONSOLE-STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="CONSOLE-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${fileDir}/console.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <maxFileSize>10MB</maxFileSize>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="app" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${fileDir}/app.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <maxFileSize>10MB</maxFileSize>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="mapper" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${fileDir}/mapper.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <maxFileSize>10MB</maxFileSize>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="com.heuman.mapper" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE-STDOUT"/>
+    </logger>
+    <logger name="com.heuman" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE-STDOUT"/>
+    </logger>
+    <logger name="org.apache.shiro" level="TRACE" additivity="false">
+        <appender-ref ref="CONSOLE-STDOUT"/>
+    </logger>
+    <logger name="org.springframework" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE-STDOUT"/>
+    </logger>
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE-STDOUT"/>
+    </root>
+</configuration>
